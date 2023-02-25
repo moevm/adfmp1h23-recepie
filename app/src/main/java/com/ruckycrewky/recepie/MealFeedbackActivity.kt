@@ -54,6 +54,7 @@ fun RecipeTitle(
             modifier = Modifier
                 .wrapContentSize()
                 .fillMaxSize()
+                .padding(start = 40.dp)
         ){
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -61,7 +62,9 @@ fun RecipeTitle(
                 Text(
                     text = recipe.name,
                     style = Typography.titleLarge,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .width(200.dp)
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
@@ -84,6 +87,9 @@ fun RecipeTitle(
 @Preview(showBackground = true)
 @Composable
 fun RecipeTitlePreview() {
-    val defaultRecipe = Recipe("Губадия с курагой", 4.5, "40 мин", R.drawable.gubadiya)
+    val defaultRecipe = Recipe("Губадия с курагой с курагой с курагой", 4.5, "40 мин", R.drawable.gubadiya)
     RecipeTitle(recipe = defaultRecipe)
 }
+
+
+
