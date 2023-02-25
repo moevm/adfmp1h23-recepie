@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Recepie</string>
+    <string name="feedbackLabel">Отзывы</string>
 </resources>

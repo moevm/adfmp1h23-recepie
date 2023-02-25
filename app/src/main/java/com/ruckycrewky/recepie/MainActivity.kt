@@ -1,5 +1,7 @@
 package com.ruckycrewky.recepie
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -32,20 +35,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val activity = LocalContext.current as Activity
+                    activity.startActivity(Intent(activity,MealFeedbackActivity::class.java))
+                    finish()
                 }
             }
         }
     }
 }
-
-data class Recipe(
-    val name: String,
-    val rating: Double,
-    val cookTime: String,
-    @DrawableRes val imageID: Int, // TODO: убрать
-)
-
-
 @Composable
 fun RecipeCard(
     recipe: Recipe
