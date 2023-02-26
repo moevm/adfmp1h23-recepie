@@ -9,7 +9,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 
-val defaultRecipe = Recipe("Губадия с курагой", 4.5, "40 мин", R.drawable.gubadiya)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
