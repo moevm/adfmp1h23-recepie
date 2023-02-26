@@ -12,6 +12,7 @@
     <string name="sendFeedbackLabel">Отправить</string>
 
     <string name="ingredient_search_placeholder">Введите название ингредиента</string>
+    <string name="recipe_search_placeholder">Введите название рецепта</string>
     <string name="ingredient_search_hide_chosen_ingredients">Скрыть выбранные ингредиенты</string>
     <string name="ingredient_search_show_chosen_ingredients">Показать выбранные ингредиенты</string>
     <string name="ingredient_search_find_recipes">Найти рецепты</string>

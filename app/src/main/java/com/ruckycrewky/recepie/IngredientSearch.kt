@@ -46,11 +46,14 @@ fun IngredientSearch(
         .padding(start = 10.dp, end = 10.dp)
         .fillMaxWidth()
 
+    val onValueChangeDoNothing = { _: String -> {} } // TODO: временная заглушка
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SearchBar(
             placeHolder = stringResource(id = R.string.ingredient_search_placeholder),
+            onValueChange = onValueChangeDoNothing,
             leadingIcon = {
                 Image(
                     painter = painterResource(R.drawable.carrot),
