@@ -7,4 +7,7 @@ data class Recipe(
     val rating: Double,
     val cookTime: String,
     @DrawableRes val imageID: Int, // TODO: убрать
+    val numberOfReviews: Int,
+    val ingredients: Map<String, String>,
+    val instruction: List<String>
 )

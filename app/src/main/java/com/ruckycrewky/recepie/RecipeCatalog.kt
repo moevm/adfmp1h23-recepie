@@ -43,35 +43,3 @@ fun RecipeCatalogPreview() {
     RecipeCatalog(recipeSamples)
 }
 
-val recipeSamples = listOf(
-    Recipe(
-        "Губадия с курагой и очень вкусной посыпкой",
-        4.5,
-        "1 ч 45 мин",
-        R.drawable.gubadiya,
-    ),
-    Recipe(
-        "Блины",
-        4.5,
-        "35 мин",
-        R.drawable.blin,
-    ),
-    Recipe(
-        "Блины с икрой",
-        5.0,
-        "35 мин",
-        R.drawable.blin_s_ikroy,
-    ),
-    Recipe(
-        "Драники",
-        5.0,
-        "35 мин",
-        R.drawable.draniki,
-    ),
-    Recipe(
-        "Шарлотка",
-        4.5,
-        "1.5 ч",
-        R.drawable.sharlotka,
-    )
-)
