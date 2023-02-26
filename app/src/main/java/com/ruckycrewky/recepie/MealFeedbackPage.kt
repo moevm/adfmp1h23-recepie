@@ -20,38 +20,47 @@ import androidx.compose.ui.unit.dp
 import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 import com.ruckycrewky.recepie.ui.theme.Typography
 
+
+@Composable
+fun MealFeedbackPage(
+    modifier: Modifier = Modifier
+){
+    Column {
+        RecipeTitle(recipe = recipeSamples[0])
+
+        LazyColumn(
+            contentPadding = PaddingValues(horizontal = 20.dp, vertical = 15.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            modifier = Modifier
+                .weight(1f)
+        ){
+            items(feedbackSamples){
+                FeedbackCard(feedback = it)
+            }
+        }
+
+        AddFeedbackButton()
+    }
+}
+
 @Preview
 @Composable
-fun MealFeedbackPage(){
+fun MealFeedbackPagePreview(){
     RecepieTheme {
         // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Column {
-                RecipeTitle(recipe = recipeSamples[0])
-
-                LazyColumn(
-                    contentPadding = PaddingValues(horizontal = 20.dp, vertical = 15.dp),
-                    verticalArrangement = Arrangement.spacedBy(20.dp),
-                    modifier = Modifier
-                        .weight(1f)
-                ){
-                    items(feedbackSamples){
-                        FeedbackCard(feedback = it)
-                    }
-                }
-
-                AddFeedbackButton()
-            }
+            MealFeedbackPage()
         }
     }
 }
 
 @Composable
 fun RecipeTitle(
-    recipe: Recipe
+    recipe: Recipe,
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = Modifier
@@ -101,7 +110,8 @@ fun RecipeTitlePreview() {
 
 @Composable
 fun FeedbackCard(
-    feedback: Feedback
+    feedback: Feedback,
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = MaterialTheme.shapes.medium,
@@ -165,9 +175,10 @@ fun FeedbackCardPreview() {
     FeedbackCard(feedback = feedbackSamples[0])
 }
 
-@Preview
 @Composable
-fun AddFeedbackButton() {
+fun AddFeedbackButton(
+    modifier: Modifier = Modifier
+) {
     Button(
         onClick = { /*TODO*/ },
         colors = ButtonDefaults.buttonColors(Color.Blue),
@@ -182,4 +193,10 @@ fun AddFeedbackButton() {
             textAlign = TextAlign.Center,
         )
     }
+}
+
+@Preview
+@Composable
+fun AddFeedbackButtonPreview() {
+    AddFeedbackButton()
 }

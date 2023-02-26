@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifie
+import androidx.compose.ui.Modifier
 import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 
 val defaultRecipe = Recipe("Губадия с курагой", 4.5, "40 мин", R.drawable.gubadiya)
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column {
-                        RecipeCard(recipeSamples[0])
+                        RecipeCard(defaultRecipe)
                     }
                 }
             }

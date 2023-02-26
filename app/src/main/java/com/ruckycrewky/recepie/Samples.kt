@@ -32,12 +32,3 @@ val feedbackSamples = listOf(
         R.drawable.gubadiya,
     )
 )
-
-val recipeSamples = listOf(
-    Recipe(
-        "Губадия с курагой с курагой с курагой",
-        4.5,
-        "40 мин",
-        R.drawable.gubadiya
-    )
-)
