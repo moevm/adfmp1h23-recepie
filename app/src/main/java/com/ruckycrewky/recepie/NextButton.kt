@@ -4,10 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -46,6 +43,6 @@ fun NextButton(
         shape = MaterialTheme.shapes.medium,
         shadowElevation = 1.dp)
     {
-        Icon(Icons.Filled.NavigateNext, "next")
+        // Icon(Icons.Filled.NavigateNext, "next")
     }
 }

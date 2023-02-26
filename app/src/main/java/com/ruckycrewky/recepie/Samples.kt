@@ -193,3 +193,34 @@ val ingredientSamples = listOf(
         imageID = R.drawable.muka
     )
 )
+
+val recipeSearchResultSamples = listOf(
+    RecipeSearchResult(
+        "Губадия с курагой и очень вкусной посыпкой",
+        4.5,
+        "1 ч 45 мин",
+        R.drawable.gubadiya,
+        unusedIngredients = ingredientSamples
+    ),
+    RecipeSearchResult(
+        "Блины с икрой",
+        5.0,
+        "35 мин",
+        R.drawable.blin_s_ikroy,
+        unusedIngredients = ingredientSamples
+    ),
+    RecipeSearchResult(
+        "Губадия с курагой и очень вкусной посыпкой",
+        4.5,
+        "1 ч 45 мин",
+        R.drawable.gubadiya,
+        unusedIngredients = ingredientSamples
+    ),
+    RecipeSearchResult(
+        "Губадия с курагой и очень вкусной посыпкой",
+        4.5,
+        "1 ч 45 мин",
+        R.drawable.gubadiya,
+        unusedIngredients = ingredientSamples
+    ),
+)

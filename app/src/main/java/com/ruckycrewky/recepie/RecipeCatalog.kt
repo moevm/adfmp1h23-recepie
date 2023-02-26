@@ -1,10 +1,7 @@
 package com.ruckycrewky.recepie
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -39,7 +36,12 @@ fun RecipeCatalog(
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(recipes) {
-                RecipeCard(recipe = it)
+                RecipeCard(
+                    recipe = it,
+                    modifier = Modifier
+                        .height(150.dp)
+                        .width(180.dp)
+                )
             }
         }
     }
