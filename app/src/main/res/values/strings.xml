@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Recepie</string>
     <string name="feedbackLabel">Отзывы</string>
-    <string name="addFeedbackLabel">Оставить отзыв</string>
+    <string name="addFeedbackButtonLabel">Оставить отзыв</string>
     <string name="about_title">О нас</string>
     <string name="version">Версия 0.1.0</string>
     <string name="company">Rucky Crewky Mobile</string>
+    <string name="addFeedbackLabel">Оставьте отзыв о рецепте</string>
+    <string name="inputYourNameLabel">Введите ваше имя</string>
+    <string name="callOfCamShotLabel">Сфотографируйте Ваш кулинарный шедевр</string>
+    <string name="callOfFeedbackLabel">Напишите о Ваших впечатлениях</string>
+    <string name="sendFeedbackLabel">Отправить</string>
 </resources>
