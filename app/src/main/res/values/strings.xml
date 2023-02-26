@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Recepie</string>
     <string name="feedbackLabel">Отзывы</string>
+    <string name="addFeedbackLabel">Оставить отзыв</string>
 </resources>

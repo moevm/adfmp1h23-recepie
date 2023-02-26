@@ -35,9 +35,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val activity = LocalContext.current as Activity
-                    activity.startActivity(Intent(activity,MealFeedbackActivity::class.java))
-                    finish()
+                    Column {
+                        RecipeCard(recipeSamples[0])
+                    }
                 }
             }
         }
