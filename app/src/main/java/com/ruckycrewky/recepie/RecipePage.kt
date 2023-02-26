@@ -6,8 +6,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccessTime
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -111,8 +109,8 @@ fun RecipePage(recipeID: Int = 1){
                         text = recipeData.cookTime,
                         color = GrayCookTime
                     )
-                    Icon(
-                        Icons.Outlined.AccessTime,
+                    Image(
+                         painterResource(id = R.drawable.baseline_access_time_24),
                         "time",
 
                     )
