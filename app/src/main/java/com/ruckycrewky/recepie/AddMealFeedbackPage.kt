@@ -74,7 +74,7 @@ fun NameInputField(
     modifier: Modifier = Modifier
 ) {
     var name by remember { mutableStateOf(TextFieldValue("")) }
-    val mMaxLength = 20
+    val nameMaxLength = 20
 
     Column(){
         TextField(
@@ -82,7 +82,7 @@ fun NameInputField(
             textStyle = TextStyle.Default.copy(fontSize = 28.sp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             onValueChange = {
-                if (it.text.length <= mMaxLength) {
+                if (it.text.length <= nameMaxLength) {
                     name = it
                 }
             },
@@ -102,7 +102,7 @@ fun NameInputField(
                 .border(1.dp, Color.Black, shape = RoundedCornerShape(50))
         )
         Text(
-            text = "${name.text.length} / $mMaxLength",
+            text = "${name.text.length} / $nameMaxLength",
             textAlign = TextAlign.End,
             style = MaterialTheme.typography.labelMedium,
             modifier = Modifier
@@ -166,7 +166,7 @@ fun FeedbackInputField(
     modifier: Modifier = Modifier
 ) {
     var feedback by remember { mutableStateOf(TextFieldValue("")) }
-    val mMaxLength = 200
+    val feedbackMaxLength = 200
 
     Column(){
         TextField(
@@ -174,7 +174,7 @@ fun FeedbackInputField(
             textStyle = TextStyle.Default.copy(fontSize = 28.sp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             onValueChange = {
-                if (it.text.length <= mMaxLength) {
+                if (it.text.length <= feedbackMaxLength) {
                     feedback = it
                 }
             },
@@ -193,7 +193,7 @@ fun FeedbackInputField(
                 .border(1.dp, Color.Black, shape = RoundedCornerShape(20))
         )
         Text(
-            text = "${feedback.text.length} / $mMaxLength",
+            text = "${feedback.text.length} / $feedbackMaxLength",
             textAlign = TextAlign.End,
             style = MaterialTheme.typography.labelMedium,
             modifier = Modifier
