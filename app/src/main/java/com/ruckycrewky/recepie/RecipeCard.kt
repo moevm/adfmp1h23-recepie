@@ -21,11 +21,12 @@ import com.ruckycrewky.recepie.ui.theme.Typography
 @Composable
 fun RecipeCard(
     recipe: Recipe,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         shape = MaterialTheme.shapes.medium,
         shadowElevation = 1.dp,
-        modifier = Modifier
+        modifier = modifier
             .height(150.dp)
             .width(180.dp)
     ) {

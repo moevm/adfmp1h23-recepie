@@ -138,3 +138,58 @@ val recipeSamples = listOf(
 )
 
 val defaultRecipe = recipeSamples[0]
+
+val ingredientCategoriesSamples = listOf(
+    IngredientCategory(
+        name = "Фрукты и ягоды",
+        imageID = R.drawable.frukrti_i_yagodi,
+    ),
+    IngredientCategory(
+        name = "Молочная продукция",
+        imageID = R.drawable.molochnaya_produkciya,
+    ),
+    IngredientCategory(
+        name = "Мука и мучная продукция",
+        imageID = R.drawable.myka_i_co,
+    ),
+    IngredientCategory(
+        name = "Птица",
+        imageID = R.drawable.ptica,
+    ),
+    IngredientCategory(
+        name = "Рыба и морепродукты",
+        imageID = R.drawable.riba,
+    ),
+    IngredientCategory(
+        name = "Пищевые добавки",
+        imageID = R.drawable.pishevie_dobavki,
+    ),
+)
+
+val ingredientSamples = listOf(
+    Ingredient(
+        name = "Зелёное яблоко",
+        category = "Фрукты и ягоды",
+        imageID = R.drawable.yabloki,
+    ),
+    Ingredient(
+        name = "Ананас",
+        category = "Фрукты и ягоды",
+        imageID = R.drawable.pineapple,
+    ),
+    Ingredient(
+        name = "Вишня",
+        category = "Фрукты и ягоды",
+        imageID = R.drawable.cherry,
+    ),
+    Ingredient(
+        name = "Апельсин",
+        category = "Фрукты и ягоды",
+        imageID = R.drawable.orange,
+    ),
+    Ingredient(
+        name = "Мука",
+        category = "Мука и мучная продукция",
+        imageID = R.drawable.muka
+    )
+)

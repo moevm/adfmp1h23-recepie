@@ -17,3 +17,5 @@ val HighRating = Color(0xFF1D9700)
 val GrayBackground = Color(0xFFF1F1F1)
 val ClickAnimationColor = Color(0xFF9B9B9B)
 val DisabledButton = Color(0xFFF1F1F1)
+
+val FindReceiptButtonColor = Color(0xFF2196F3)
