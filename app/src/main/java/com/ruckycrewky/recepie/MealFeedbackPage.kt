@@ -1,6 +1,7 @@
 package com.ruckycrewky.recepie
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,7 +27,7 @@ fun MealFeedbackPage(
     modifier: Modifier = Modifier
 ){
     Column {
-        RecipeTitle(recipe = recipeSamples[0])
+        RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
 
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 20.dp, vertical = 15.dp),
@@ -60,6 +61,7 @@ fun MealFeedbackPagePreview(){
 @Composable
 fun RecipeTitle(
     recipe: Recipe,
+    text: String,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -86,7 +88,7 @@ fun RecipeTitle(
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = stringResource(R.string.feedbackLabel),
+                    text = text,
                     style = Typography.bodyLarge,
                     textAlign = TextAlign.Center
                 )
@@ -105,7 +107,7 @@ fun RecipeTitle(
 @Preview(showBackground = true)
 @Composable
 fun RecipeTitlePreview() {
-    RecipeTitle(recipe = recipeSamples[0])
+    RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
 }
 
 @Composable
@@ -188,7 +190,7 @@ fun AddFeedbackButton(
             .fillMaxWidth()
     ) {
         Text(
-            text = stringResource(R.string.addFeedbackLabel),
+            text = stringResource(R.string.addFeedbackButtonLabel),
             style = Typography.titleLarge,
             textAlign = TextAlign.Center,
         )
