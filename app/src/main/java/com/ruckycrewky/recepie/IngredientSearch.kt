@@ -30,7 +30,8 @@ import java.util.Collections
 
 @Composable
 fun IngredientSearch(
-    modifier: Modifier = Modifier
+    onClickMenu: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     var chosenCategory by remember { mutableStateOf("") }
     var showChosenIngredients by remember { mutableStateOf(false) }
@@ -60,6 +61,7 @@ fun IngredientSearch(
                     contentDescription = "search",
                     modifier = Modifier
                         .padding(15.dp)
+                        .clickable { onClickMenu() }
                 )
             }
         )
@@ -253,7 +255,7 @@ fun IngredientCategoriesCatalog(
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(180.dp),
+        columns = GridCells.Adaptive(150.dp),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -285,5 +287,5 @@ fun InvisibleButton(
 @Composable
 @Preview
 fun IngredientSearchPreview() {
-    IngredientSearch()
+    IngredientSearch({})
 }

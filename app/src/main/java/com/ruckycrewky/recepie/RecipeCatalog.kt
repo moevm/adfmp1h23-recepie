@@ -1,6 +1,7 @@
 package com.ruckycrewky.recepie
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,12 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
 fun RecipeCatalog(
-    recipes: List<Recipe>
+    recipes: List<Recipe>,
+    onClickMenu: () -> Unit,
+    navController: NavController
 ) {
     Column {
         val onValueChangeDoNothing = { _: String -> {} }
@@ -30,6 +33,7 @@ fun RecipeCatalog(
                 contentDescription = "Search",
                 modifier = Modifier
                     .padding(15.dp)
+                    .clickable { onClickMenu() }
             )
         })
         LazyVerticalGrid(
@@ -39,14 +43,19 @@ fun RecipeCatalog(
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(recipes) {
-                RecipeCard(recipe = it)
+                RecipeCard(
+                    recipe = it,
+                    modifier = Modifier.clickable {
+                        navController.navigate("recipe/${it.name}")
+                    }
+                )
             }
         }
     }
 }
 
-@Preview
-@Composable
-fun RecipeCatalogPreview() {
-    RecipeCatalog(recipeSamples)
-}
+//@Preview
+//@Composable
+//fun RecipeCatalogPreview() {
+//    RecipeCatalog(recipeSamples)
+//}

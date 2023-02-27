@@ -5,7 +5,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.NavigateBefore
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -46,6 +46,6 @@ fun BackButton(
         shape = MaterialTheme.shapes.medium,
         shadowElevation = 1.dp)
     {
-        Icon(Icons.Filled.NavigateBefore, "back")
+        Icon(Icons.Filled.ArrowBack, "back")
     }
 }
