@@ -27,18 +27,20 @@ fun RecipeCard(
         shape = MaterialTheme.shapes.medium,
         shadowElevation = 1.dp,
         modifier = modifier
-            .height(150.dp)
-            .width(180.dp)
     ) {
         Column {
             Image(
                 painter = painterResource(recipe.imageID),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.height(90.dp)
+                modifier = Modifier
+                    .weight(3f)
             )
             Column(
-                modifier = Modifier.padding(4.dp)
+                modifier = Modifier
+                    .weight(2f)
+                    .fillMaxWidth()
+                    .padding(4.dp)
             ) {
                 Row{
                     Text(
@@ -61,7 +63,7 @@ fun RecipeCard(
                     )
                     Image(
                         painter = painterResource(id = R.drawable.baseline_star_24),
-                        contentDescription = "Звезда"
+                        contentDescription = "star"
                     )
                 }
             }
