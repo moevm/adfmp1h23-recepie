@@ -2,10 +2,7 @@ package com.ruckycrewky.recepie
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -45,17 +42,14 @@ fun RecipeCatalog(
             items(recipes) {
                 RecipeCard(
                     recipe = it,
-                    modifier = Modifier.clickable {
-                        navController.navigate("recipe/${it.name}")
-                    }
+                    modifier = Modifier
+                        .height(150.dp)
+                        .width(180.dp)
+                        .clickable {
+                            navController.navigate("recipe/${it.name}")
+                        }
                 )
             }
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun RecipeCatalogPreview() {
-//    RecipeCatalog(recipeSamples)
-//}
