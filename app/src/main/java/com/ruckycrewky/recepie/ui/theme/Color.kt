@@ -19,3 +19,4 @@ val ClickAnimationColor = Color(0xFF9B9B9B)
 val DisabledButton = Color(0xFFF1F1F1)
 
 val FindReceiptButtonColor = Color(0xFF2196F3)
+val BlueButton = Color(0xFF2196F3)
