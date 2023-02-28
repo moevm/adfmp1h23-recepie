@@ -31,18 +31,27 @@ fun RecipePage(
         color = GrayBackground
     ) {
         Column() {
-            Image(
-                painter = painterResource(recipeData.imageID),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
-            )
+            ) {
+                Image(
+                    painter = painterResource(recipeData.imageID),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                )
+                BackPageButton(
+                    onClick = { navController.popBackStack() }
+                )
+            }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = recipeData.name,
-                style = Typography.labelSmall,
+                style = Typography.titleLarge,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -62,7 +71,7 @@ fun RecipePage(
                                 color = ClickAnimationColor
                             )
                         ) {
-                          navController.navigate("feedback/${recipeData.name}")
+                            navController.navigate("feedback/${recipeData.name}")
                         },
                     shape = MaterialTheme.shapes.medium,
                     shadowElevation = 1.dp,

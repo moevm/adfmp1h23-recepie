@@ -55,7 +55,7 @@ fun TopBar(
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 5.dp)
+                    .padding(vertical = 15.dp)
             )
         }
     }

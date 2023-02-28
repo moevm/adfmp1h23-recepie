@@ -30,7 +30,7 @@ fun RecipeSearchResultPage(
 
     Column {
         Button(
-            onClick = {},
+            onClick = { navController.popBackStack() },
             elevation = defaultButtonElevation,
             shape = CircleShape,
             contentPadding = PaddingValues(0.dp),  // avoid the little icon

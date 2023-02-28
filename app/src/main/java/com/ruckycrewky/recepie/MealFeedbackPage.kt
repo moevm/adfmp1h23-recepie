@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -19,7 +18,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.BlueButton
-import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 import com.ruckycrewky.recepie.ui.theme.Typography
 
 
@@ -29,7 +27,7 @@ fun MealFeedbackPage(
     navController: NavController
 ){
     Column {
-        RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
+        RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel), navController)
 
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 20.dp, vertical = 15.dp),
@@ -64,7 +62,8 @@ fun MealFeedbackPage(
 fun RecipeTitle(
     recipe: Recipe,
     text: String,
-    modifier: Modifier = Modifier
+    navController: NavController,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = Modifier
@@ -103,15 +102,15 @@ fun RecipeTitle(
             modifier = Modifier
                 .width(90.dp)
         )
-        BackPageButton()
+        BackPageButton(onClick = { navController.popBackStack() })
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun RecipeTitlePreview() {
-    RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun RecipeTitlePreview() {
+//    RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
+//}
 
 @Composable
 fun FeedbackCard(
