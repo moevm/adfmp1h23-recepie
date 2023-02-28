@@ -18,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ruckycrewky.recepie.ui.theme.BlueButton
 import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 import com.ruckycrewky.recepie.ui.theme.Typography
 
@@ -81,15 +82,15 @@ fun RecipeTitle(
             ){
                 Text(
                     text = recipe.name,
-                    style = Typography.titleLarge,
+                    style = Typography.titleMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .width(200.dp)
+                        .width(250.dp)
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = text,
-                    style = Typography.bodyLarge,
+                    style = Typography.bodyMedium,
                     textAlign = TextAlign.Center
                 )
             }
@@ -101,6 +102,7 @@ fun RecipeTitle(
             modifier = Modifier
                 .width(90.dp)
         )
+        BackPageButton()
     }
 }
 
@@ -139,7 +141,7 @@ fun FeedbackCard(
                     for (i in 1..5) {
                         var star = R.drawable.empty_star_rate_24
                         if (i <= feedback.rating) {
-                            star = R.drawable.full_star_rate_24
+                            star = R.drawable.baseline_star_24
                         }
                         Image(
                             painter = painterResource(id = star),
@@ -183,7 +185,7 @@ fun AddFeedbackButton(
 ) {
     Button(
         onClick = { /*TODO*/ },
-        colors = ButtonDefaults.buttonColors(Color.Blue),
+        colors = ButtonDefaults.buttonColors(BlueButton),
         modifier = Modifier
             .padding(horizontal = 10.dp, vertical = 5.dp)
             .height(50.dp)

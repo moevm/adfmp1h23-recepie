@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ruckycrewky.recepie.ui.theme.BlueButton
 import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 import com.ruckycrewky.recepie.ui.theme.Typography
 
@@ -91,6 +92,7 @@ fun NameInputField(
             singleLine = true,
             shape = RoundedCornerShape(50),
             colors = TextFieldDefaults.textFieldColors(
+                containerColor = MaterialTheme.colorScheme.surface,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent
@@ -136,7 +138,7 @@ fun SetRatingField(
             for (i in 1..5) {
                 var star = R.drawable.empty_star_rate_24
                 if (i <= rating) {
-                    star = R.drawable.full_star_rate_24
+                    star = R.drawable.baseline_star_24
                 }
                 Image(
                     painter = painterResource(id = star),
@@ -181,6 +183,7 @@ fun FeedbackInputField(
             placeholder = { Text(text = stringResource(R.string.callOfFeedbackLabel)) },
             shape = RoundedCornerShape(20),
             colors = TextFieldDefaults.textFieldColors(
+                containerColor = MaterialTheme.colorScheme.surface,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent
@@ -260,7 +263,7 @@ fun SendFeedbackButton(
 ){
     Button(
         onClick = { /*TODO*/ },
-        colors = ButtonDefaults.buttonColors(Color.Blue),
+        colors = ButtonDefaults.buttonColors(BlueButton),
         modifier = modifier
             .padding(horizontal = 10.dp, vertical = 5.dp)
             .height(50.dp)

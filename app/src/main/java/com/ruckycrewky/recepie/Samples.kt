@@ -2,7 +2,7 @@ package com.ruckycrewky.recepie
 
 val feedbackSamples = listOf(
     Feedback(
-        "Жопа коня",
+        "Анонимный Беларус",
         1,
         "Мне не понравилось",
         R.drawable.gubadiya,
@@ -14,19 +14,19 @@ val feedbackSamples = listOf(
         R.drawable.gubadiya,
     ),
     Feedback(
-        "Жопа коня",
+        "Анонимный Беларус",
         1,
         "Мне не понравилось",
         R.drawable.gubadiya,
     ),
     Feedback(
-        "Жопа коня",
+        "Анонимный Беларус",
         1,
         "Мне не понравилось",
         R.drawable.gubadiya,
     ),
     Feedback(
-        "Жопа коня",
+        "Анонимный Беларус",
         1,
         "Мне не понравилось",
         R.drawable.gubadiya,
