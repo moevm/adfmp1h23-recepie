@@ -3,12 +3,9 @@ package com.ruckycrewky.recepie
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -17,15 +14,16 @@ import androidx.compose.ui.unit.dp
 import com.ruckycrewky.recepie.ui.theme.GrayCookTime
 import com.ruckycrewky.recepie.ui.theme.GrayBackground
 
-@Preview
 @Composable
-fun AboutPage(){
+fun AboutPage(
+    onClickMenu: () -> Unit
+){
     val title = stringResource(id = R.string.about_title)
     Surface(
         color = GrayBackground,
     ) {
         Column() {
-            TopBar(title)
+            TopBar(title, onClickMenu)
             Spacer(modifier = Modifier.height(10.dp))
             AboutInfo()
         }
@@ -34,7 +32,8 @@ fun AboutPage(){
 
 @Composable
 fun TopBar(
-    title: String
+    title: String,
+    onClickMenu: () -> Unit
 ){
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -43,15 +42,20 @@ fun TopBar(
         Box(
             modifier = Modifier
         ) {
-            Icon(Icons.Filled.Menu,
-                "menu",
-                modifier = Modifier.padding(5.dp))
+            TextButton(
+                onClick = { onClickMenu() },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Color.Black)
+            ) {
+                Icon(Icons.Filled.Menu,
+                    "menu",
+                    modifier = Modifier.padding(5.dp))
+            }
             Text(
                 text = title,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 5.dp)
+                    .padding(vertical = 15.dp)
             )
         }
     }

@@ -1,7 +1,6 @@
 package com.ruckycrewky.recepie
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -18,17 +16,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.BlueButton
-import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 import com.ruckycrewky.recepie.ui.theme.Typography
 
 
 @Composable
 fun MealFeedbackPage(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ){
     Column {
-        RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
+        RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel), navController)
 
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 20.dp, vertical = 15.dp),
@@ -41,29 +40,30 @@ fun MealFeedbackPage(
             }
         }
 
-        AddFeedbackButton()
+        AddFeedbackButton( onClick = { navController.navigate("add-feedback/${recipeSamples[1].name}") })
     }
 }
 
-@Preview
-@Composable
-fun MealFeedbackPagePreview(){
-    RecepieTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            MealFeedbackPage()
-        }
-    }
-}
+//@Preview
+//@Composable
+//fun MealFeedbackPagePreview(){
+//    RecepieTheme {
+//        // A surface container using the 'background' color from the theme
+//        Surface(
+//            modifier = Modifier.fillMaxSize(),
+//            color = MaterialTheme.colorScheme.background
+//        ) {
+//            MealFeedbackPage()
+//        }
+//    }
+//}
 
 @Composable
 fun RecipeTitle(
     recipe: Recipe,
     text: String,
-    modifier: Modifier = Modifier
+    navController: NavController,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = Modifier
@@ -102,15 +102,15 @@ fun RecipeTitle(
             modifier = Modifier
                 .width(90.dp)
         )
-        BackPageButton()
+        BackPageButton(onClick = { navController.popBackStack() })
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun RecipeTitlePreview() {
-    RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun RecipeTitlePreview() {
+//    RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
+//}
 
 @Composable
 fun FeedbackCard(
@@ -181,10 +181,11 @@ fun FeedbackCardPreview() {
 
 @Composable
 fun AddFeedbackButton(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(BlueButton),
         modifier = Modifier
             .padding(horizontal = 10.dp, vertical = 5.dp)
@@ -199,8 +200,8 @@ fun AddFeedbackButton(
     }
 }
 
-@Preview
-@Composable
-fun AddFeedbackButtonPreview() {
-    AddFeedbackButton()
-}
+//@Preview
+//@Composable
+//fun AddFeedbackButtonPreview() {
+//    AddFeedbackButton()
+//}

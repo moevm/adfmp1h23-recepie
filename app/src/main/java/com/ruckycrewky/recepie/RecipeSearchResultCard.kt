@@ -20,7 +20,7 @@ import com.ruckycrewky.recepie.ui.theme.Typography
 @Composable
 fun RecipeSearchResultCard(
     recipe: RecipeSearchResult,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = MaterialTheme.shapes.medium,

@@ -23,16 +23,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ruckycrewky.recepie.ui.theme.BlueButton
-import com.ruckycrewky.recepie.ui.theme.RecepieTheme
+import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.Typography
 
 
 @Composable
 fun AddMealFeedbackPage(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ){
     Column {
-        RecipeTitle(recipe = recipeSamples[1], stringResource(R.string.addFeedbackLabel))
+        RecipeTitle(recipe = recipeSamples[1], stringResource(R.string.addFeedbackLabel), navController)
 
         NameInputField()
 
@@ -44,30 +45,33 @@ fun AddMealFeedbackPage(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        SendFeedbackButton(Modifier.align(Alignment.End))
+        SendFeedbackButton(
+            Modifier
+                .align(Alignment.End)
+        )
     }
 }
 
-@Preview
-@Composable
-fun AddMealFeedbackPagePreview(){
-    RecepieTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            AddMealFeedbackPage()
-        }
-    }
-}
+//@Preview
+//@Composable
+//fun AddMealFeedbackPagePreview(){
+//    RecepieTheme {
+//        // A surface container using the 'background' color from the theme
+//        Surface(
+//            modifier = Modifier.fillMaxSize(),
+//            color = MaterialTheme.colorScheme.background
+//        ) {
+//            AddMealFeedbackPage()
+//        }
+//    }
+//}
 
 
-@Preview(showBackground = true)
-@Composable
-fun AddFeedbackTitlePreview() {
-    RecipeTitle(recipe = recipeSamples[1], stringResource(R.string.addFeedbackLabel))
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun AddFeedbackTitlePreview() {
+//    RecipeTitle(recipe = recipeSamples[1], stringResource(R.string.addFeedbackLabel))
+//}
 
 
 @Composable

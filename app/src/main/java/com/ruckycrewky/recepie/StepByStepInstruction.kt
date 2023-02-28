@@ -32,7 +32,7 @@ fun StepByStepInstruction(
         currentText = instructions[currentPage - 1]
     Box(
         modifier = Modifier
-            .height(200.dp)
+            .height(400.dp)
     ) {
         Surface(
             color = Color.White,
@@ -116,7 +116,7 @@ fun StepByStepInstruction(
     val backEnabled = (currentPage != 0)
     val nextEnabled = (currentPage != instructions.size)
     Row(){
-        Spacer(modifier = Modifier.width(40.dp))
+        Spacer(modifier = Modifier.width(65.dp))
         BackButton(onClick = { currentPage -= 1 }, isEnabled = backEnabled)
         Spacer(modifier = Modifier.width(40.dp))
         NextButton(onClick = { currentPage += 1 }, isEnabled = nextEnabled)

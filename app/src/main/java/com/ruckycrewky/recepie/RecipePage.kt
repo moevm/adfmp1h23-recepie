@@ -15,14 +15,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.*
 
-@Preview
 @Composable
-fun RecipePage(recipeID: Int = 1){
-    val recipeData = recipeSamples[0]
+fun RecipePage(
+    recipeData: Recipe,
+    navController: NavController
+){
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -30,18 +31,27 @@ fun RecipePage(recipeID: Int = 1){
         color = GrayBackground
     ) {
         Column() {
-            Image(
-                painter = painterResource(recipeData.imageID),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
-            )
+            ) {
+                Image(
+                    painter = painterResource(recipeData.imageID),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                )
+                BackPageButton(
+                    onClick = { navController.popBackStack() }
+                )
+            }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = recipeData.name,
-                style = Typography.labelSmall,
+                style = Typography.titleLarge,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -49,10 +59,10 @@ fun RecipePage(recipeID: Int = 1){
             Row(
                 modifier = Modifier.fillMaxWidth()
             ){
-                Spacer(modifier = Modifier.width(50.dp))
+                Spacer(modifier = Modifier.width(40.dp))
                 Surface(
                     modifier = Modifier
-                        .width(160.dp)
+                        .width(170.dp)
                         .height(55.dp)
                         .clickable(
                             interactionSource = MutableInteractionSource(),
@@ -60,7 +70,9 @@ fun RecipePage(recipeID: Int = 1){
                                 bounded = true,
                                 color = ClickAnimationColor
                             )
-                        ) { },
+                        ) {
+                            navController.navigate("feedback/${recipeData.name}")
+                        },
                     shape = MaterialTheme.shapes.medium,
                     shadowElevation = 1.dp,
                 ){

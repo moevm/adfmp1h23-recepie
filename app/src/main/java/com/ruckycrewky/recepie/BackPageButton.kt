@@ -11,13 +11,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ruckycrewky.recepie.ui.theme.BlueButton
 
 @Composable
 fun BackPageButton(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     val defaultButtonElevation = ButtonDefaults.buttonElevation(
         defaultElevation = 10.dp,
@@ -25,7 +25,7 @@ fun BackPageButton(
         disabledElevation = 0.dp
     )
     Button(
-        onClick = {},
+        onClick = { onClick() },
         elevation = defaultButtonElevation,
         shape = CircleShape,
         contentPadding = PaddingValues(0.dp),  // avoid the little icon
@@ -43,8 +43,8 @@ fun BackPageButton(
     }
 }
 
-@Preview
-@Composable
-fun BackPageButtonPreview(){
-    BackPageButton()
-}
+//@Preview
+//@Composable
+//fun BackPageButtonPreview(){
+//    BackPageButton()
+//}

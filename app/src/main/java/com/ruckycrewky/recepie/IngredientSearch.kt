@@ -22,15 +22,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.FindReceiptButtonColor
 import java.util.Collections
 
 @Composable
 fun IngredientSearch(
-    modifier: Modifier = Modifier
+    onClickMenu: () -> Unit,
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     var chosenCategory by remember { mutableStateOf("") }
     var showChosenIngredients by remember { mutableStateOf(false) }
@@ -60,6 +62,7 @@ fun IngredientSearch(
                     contentDescription = "search",
                     modifier = Modifier
                         .padding(15.dp)
+                        .clickable { onClickMenu() }
                 )
             }
         )
@@ -164,7 +167,11 @@ fun IngredientSearch(
                 containerColor = FindReceiptButtonColor,
                 contentColor = Color.White,
             ),
-            onClick = { /* TODO */ }
+            onClick = {
+                val chosenIngredientName = chosenIngredients.map{it.name}
+                val chosenIngredientNameString = chosenIngredientName.joinToString(",")
+                navController.navigate("recipe-search-result/${chosenIngredientNameString}")
+            }
         ) {
             var message = stringResource(id = R.string.ingredient_search_find_recipes)
             if (chosenIngredients.isEmpty())
@@ -253,7 +260,7 @@ fun IngredientCategoriesCatalog(
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(180.dp),
+        columns = GridCells.Adaptive(150.dp),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -282,8 +289,8 @@ fun InvisibleButton(
     ){}
 }
 
-@Composable
-@Preview
-fun IngredientSearchPreview() {
-    IngredientSearch()
-}
+//@Composable
+//@Preview
+//fun IngredientSearchPreview() {
+//    IngredientSearch({})
+//}
