@@ -16,11 +16,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.*
 
 @Composable
 fun RecipePage(
-    recipeData: Recipe
+    recipeData: Recipe,
+    navController: NavController
 ){
     Surface(
         modifier = Modifier
@@ -48,10 +50,10 @@ fun RecipePage(
             Row(
                 modifier = Modifier.fillMaxWidth()
             ){
-                Spacer(modifier = Modifier.width(50.dp))
+                Spacer(modifier = Modifier.width(40.dp))
                 Surface(
                     modifier = Modifier
-                        .width(160.dp)
+                        .width(170.dp)
                         .height(55.dp)
                         .clickable(
                             interactionSource = MutableInteractionSource(),
@@ -59,7 +61,9 @@ fun RecipePage(
                                 bounded = true,
                                 color = ClickAnimationColor
                             )
-                        ) { },
+                        ) {
+                          navController.navigate("feedback/${recipeData.name}")
+                        },
                     shape = MaterialTheme.shapes.medium,
                     shadowElevation = 1.dp,
                 ){

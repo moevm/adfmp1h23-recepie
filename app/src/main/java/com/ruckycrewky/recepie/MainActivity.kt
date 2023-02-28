@@ -32,20 +32,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RecepieTheme {
-                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    Column {
-//                        RecipeCard(defaultRecipe)
-//                    }
-//                }
                 val navController = rememberNavController()
                 val drawerState = rememberDrawerState(DrawerValue.Closed)
                 val scope = rememberCoroutineScope()
                 val app_name = stringResource(id = R.string.app_name_ru)
-// icons to mimic drawer destinations
                 ModalNavigationDrawer(
                     drawerShape = customShape(),
                     drawerState = drawerState,
@@ -131,7 +121,7 @@ class MainActivity : ComponentActivity() {
                             composable(route ="ingredient-search") {
                                 IngredientSearch(
                                     onClickMenu = { scope.launch { drawerState.open() }},
-                                    //navController = navController
+                                    navController = navController
                                 )
                             }
                             composable("about") {
@@ -143,9 +133,31 @@ class MainActivity : ComponentActivity() {
                                     val recipeObject: Recipe? =
                                         findRecipe(recipes = recipeSamples, recipeName)
                                     if(recipeObject != null){
-                                        RecipePage(recipeData = recipeObject)
+                                        RecipePage(
+                                            recipeData = recipeObject,
+                                            navController = navController
+                                        )
                                     }
                                 }
+                            }
+                            composable("recipe-search-result/{ingredients}") {backStackEntry ->
+                                val ingredientsNameString = backStackEntry.arguments?.getString("ingredients")
+                                if(ingredientsNameString != null){
+                                    val ingredientNames = ingredientsNameString.split(",").map{it.trim()}
+                                    // TODO: change to get data from back
+                                    RecipeSearchResultPage(
+                                        result = recipeSearchResultSamples,
+                                        navController = navController,
+                                    )
+                                }
+                            }
+                            composable("feedback/{recipeName}"){ backStackEntry ->
+                                val recipeName = backStackEntry.arguments?.getString("recipeName")
+                                MealFeedbackPage(navController = navController)
+                            }
+                            composable("add-feedback/{recipeName}"){backStackEntry ->
+                                val recipeName = backStackEntry.arguments?.getString("recipeName")
+                                AddMealFeedbackPage(navController = navController)
                             }
                         }
                     }

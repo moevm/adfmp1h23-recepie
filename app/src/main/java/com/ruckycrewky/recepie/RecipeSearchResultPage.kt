@@ -1,5 +1,6 @@
 package com.ruckycrewky.recepie
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,13 +13,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
 fun RecipeSearchResultPage(
     result: List<RecipeSearchResult>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     val defaultButtonElevation = ButtonDefaults.buttonElevation(
         defaultElevation = 10.dp,
@@ -55,16 +57,11 @@ fun RecipeSearchResultPage(
                     modifier = Modifier
                         .height(300.dp)
                         .fillMaxWidth()
+                        .clickable {
+                            navController.navigate("recipe/${it.name}")
+                        },
                 )
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun IngredientSearchResultPreview() {
-    RecipeSearchResultPage(
-        result = recipeSearchResultSamples
-    )
 }

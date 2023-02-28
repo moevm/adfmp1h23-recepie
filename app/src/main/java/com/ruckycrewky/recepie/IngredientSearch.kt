@@ -22,9 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.FindReceiptButtonColor
 import java.util.Collections
 
@@ -32,6 +32,7 @@ import java.util.Collections
 fun IngredientSearch(
     onClickMenu: () -> Unit,
     modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     var chosenCategory by remember { mutableStateOf("") }
     var showChosenIngredients by remember { mutableStateOf(false) }
@@ -166,7 +167,11 @@ fun IngredientSearch(
                 containerColor = FindReceiptButtonColor,
                 contentColor = Color.White,
             ),
-            onClick = { /* TODO */ }
+            onClick = {
+                val chosenIngredientName = chosenIngredients.map{it.name}
+                val chosenIngredientNameString = chosenIngredientName.joinToString(",")
+                navController.navigate("recipe-search-result/${chosenIngredientNameString}")
+            }
         ) {
             var message = stringResource(id = R.string.ingredient_search_find_recipes)
             if (chosenIngredients.isEmpty())
@@ -284,8 +289,8 @@ fun InvisibleButton(
     ){}
 }
 
-@Composable
-@Preview
-fun IngredientSearchPreview() {
-    IngredientSearch({})
-}
+//@Composable
+//@Preview
+//fun IngredientSearchPreview() {
+//    IngredientSearch({})
+//}

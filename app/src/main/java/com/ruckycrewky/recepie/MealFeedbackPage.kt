@@ -1,7 +1,6 @@
 package com.ruckycrewky.recepie
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,13 +17,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ruckycrewky.recepie.ui.theme.RecepieTheme
+import androidx.navigation.NavController
 import com.ruckycrewky.recepie.ui.theme.Typography
 
 
 @Composable
 fun MealFeedbackPage(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ){
     Column {
         RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
@@ -40,23 +40,23 @@ fun MealFeedbackPage(
             }
         }
 
-        AddFeedbackButton()
+        AddFeedbackButton( onClick = { navController.navigate("add-feedback/${recipeSamples[1].name}") })
     }
 }
 
-@Preview
-@Composable
-fun MealFeedbackPagePreview(){
-    RecepieTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            MealFeedbackPage()
-        }
-    }
-}
+//@Preview
+//@Composable
+//fun MealFeedbackPagePreview(){
+//    RecepieTheme {
+//        // A surface container using the 'background' color from the theme
+//        Surface(
+//            modifier = Modifier.fillMaxSize(),
+//            color = MaterialTheme.colorScheme.background
+//        ) {
+//            MealFeedbackPage()
+//        }
+//    }
+//}
 
 @Composable
 fun RecipeTitle(
@@ -179,10 +179,11 @@ fun FeedbackCardPreview() {
 
 @Composable
 fun AddFeedbackButton(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(Color.Blue),
         modifier = Modifier
             .padding(horizontal = 10.dp, vertical = 5.dp)
@@ -197,8 +198,8 @@ fun AddFeedbackButton(
     }
 }
 
-@Preview
-@Composable
-fun AddFeedbackButtonPreview() {
-    AddFeedbackButton()
-}
+//@Preview
+//@Composable
+//fun AddFeedbackButtonPreview() {
+//    AddFeedbackButton()
+//}
