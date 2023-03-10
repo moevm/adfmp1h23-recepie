@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.page
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ruckycrewky.recepie.R
 import com.ruckycrewky.recepie.ui.theme.GrayCookTime
 import com.ruckycrewky.recepie.ui.theme.GrayBackground
 

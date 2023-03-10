@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.page
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ruckycrewky.recepie.data.RecipeSearchResult
+import com.ruckycrewky.recepie.ui.component.RecipeSearchResultCard
 
 @Composable
 fun RecipeSearchResultPage(

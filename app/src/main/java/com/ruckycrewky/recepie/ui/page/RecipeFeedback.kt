@@ -1,6 +1,7 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.page
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,7 +18,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ruckycrewky.recepie.R
+import com.ruckycrewky.recepie.data.Feedback
+import com.ruckycrewky.recepie.data.Recipe
+import com.ruckycrewky.recepie.data.feedbackSamples
+import com.ruckycrewky.recepie.data.recipeSamples
+import com.ruckycrewky.recepie.ui.component.BackPageButton
 import com.ruckycrewky.recepie.ui.theme.BlueButton
+import com.ruckycrewky.recepie.ui.theme.GrayBackground
 import com.ruckycrewky.recepie.ui.theme.Typography
 
 
@@ -44,19 +52,6 @@ fun MealFeedbackPage(
     }
 }
 
-//@Preview
-//@Composable
-//fun MealFeedbackPagePreview(){
-//    RecepieTheme {
-//        // A surface container using the 'background' color from the theme
-//        Surface(
-//            modifier = Modifier.fillMaxSize(),
-//            color = MaterialTheme.colorScheme.background
-//        ) {
-//            MealFeedbackPage()
-//        }
-//    }
-//}
 
 @Composable
 fun RecipeTitle(
@@ -69,6 +64,7 @@ fun RecipeTitle(
         modifier = Modifier
             .height(70.dp)
             .fillMaxWidth()
+            .background(GrayBackground)
     ){
         Box(
             contentAlignment = Center,
@@ -95,22 +91,17 @@ fun RecipeTitle(
                 )
             }
         }
-        Image(
-            painter = painterResource(recipe.imageID),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .width(90.dp)
-        )
+//        Image(
+//            painter = painterResource(recipe.imageID),
+//            contentDescription = null,
+//            contentScale = ContentScale.Crop,
+//            modifier = Modifier
+//                .width(90.dp)
+//        )
         BackPageButton(onClick = { navController.popBackStack() })
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun RecipeTitlePreview() {
-//    RecipeTitle(recipe = recipeSamples[0], stringResource(R.string.feedbackLabel))
-//}
 
 @Composable
 fun FeedbackCard(
@@ -199,9 +190,3 @@ fun AddFeedbackButton(
         )
     }
 }
-
-//@Preview
-//@Composable
-//fun AddFeedbackButtonPreview() {
-//    AddFeedbackButton()
-//}

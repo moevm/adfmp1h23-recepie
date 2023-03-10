@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.page
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -25,6 +25,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ruckycrewky.recepie.R
+import com.ruckycrewky.recepie.data.Ingredient
+import com.ruckycrewky.recepie.data.IngredientCategory
+import com.ruckycrewky.recepie.data.ingredientCategoriesSamples
+import com.ruckycrewky.recepie.data.ingredientSamples
+import com.ruckycrewky.recepie.ui.component.SearchBar
+import com.ruckycrewky.recepie.ui.component.SimpleCard
 import com.ruckycrewky.recepie.ui.theme.FindReceiptButtonColor
 import java.util.Collections
 
@@ -288,9 +295,3 @@ fun InvisibleButton(
             .alpha(0f)
     ){}
 }
-
-//@Composable
-//@Preview
-//fun IngredientSearchPreview() {
-//    IngredientSearch({})
-//}

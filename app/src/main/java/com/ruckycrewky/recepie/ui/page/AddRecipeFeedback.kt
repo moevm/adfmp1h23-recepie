@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.page
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ruckycrewky.recepie.ui.theme.BlueButton
 import androidx.navigation.NavController
+import com.ruckycrewky.recepie.R
+import com.ruckycrewky.recepie.data.recipeSamples
 import com.ruckycrewky.recepie.ui.theme.Typography
 
 
@@ -51,27 +53,6 @@ fun AddMealFeedbackPage(
         )
     }
 }
-
-//@Preview
-//@Composable
-//fun AddMealFeedbackPagePreview(){
-//    RecepieTheme {
-//        // A surface container using the 'background' color from the theme
-//        Surface(
-//            modifier = Modifier.fillMaxSize(),
-//            color = MaterialTheme.colorScheme.background
-//        ) {
-//            AddMealFeedbackPage()
-//        }
-//    }
-//}
-
-
-//@Preview(showBackground = true)
-//@Composable
-//fun AddFeedbackTitlePreview() {
-//    RecipeTitle(recipe = recipeSamples[1], stringResource(R.string.addFeedbackLabel))
-//}
 
 
 @Composable

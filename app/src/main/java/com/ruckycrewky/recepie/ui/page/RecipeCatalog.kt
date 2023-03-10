@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.page
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -12,6 +12,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ruckycrewky.recepie.R
+import com.ruckycrewky.recepie.data.Recipe
+import com.ruckycrewky.recepie.ui.component.RecipeCard
+import com.ruckycrewky.recepie.ui.component.SearchBar
 
 @Composable
 fun RecipeCatalog(

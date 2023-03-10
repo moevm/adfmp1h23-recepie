@@ -22,6 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.ruckycrewky.recepie.data.Recipe
+import com.ruckycrewky.recepie.data.recipeSamples
+import com.ruckycrewky.recepie.data.recipeSearchResultSamples
+import com.ruckycrewky.recepie.ui.page.*
 import com.ruckycrewky.recepie.ui.theme.RecepieTheme
 import kotlinx.coroutines.launch
 
