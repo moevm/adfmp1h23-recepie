@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.page
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -17,6 +17,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ruckycrewky.recepie.R
+import com.ruckycrewky.recepie.data.Recipe
+import com.ruckycrewky.recepie.ui.component.BackPageButton
+import com.ruckycrewky.recepie.ui.component.StepByStepInstruction
 import com.ruckycrewky.recepie.ui.theme.*
 
 @Composable

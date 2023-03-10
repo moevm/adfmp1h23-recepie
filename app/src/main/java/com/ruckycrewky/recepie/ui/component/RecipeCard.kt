@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -14,6 +14,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ruckycrewky.recepie.R
+import com.ruckycrewky.recepie.data.Recipe
+import com.ruckycrewky.recepie.data.defaultRecipe
 import com.ruckycrewky.recepie.ui.theme.GrayCookTime
 import com.ruckycrewky.recepie.ui.theme.HighRating
 import com.ruckycrewky.recepie.ui.theme.Typography

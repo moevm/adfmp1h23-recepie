@@ -1,4 +1,6 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.data
+
+import com.ruckycrewky.recepie.R
 
 val feedbackSamples = listOf(
     Feedback(

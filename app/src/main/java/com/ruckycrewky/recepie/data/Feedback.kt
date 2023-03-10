@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.data
 
 import androidx.annotation.DrawableRes
 

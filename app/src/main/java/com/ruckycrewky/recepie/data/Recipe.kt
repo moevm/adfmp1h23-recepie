@@ -1,11 +1,13 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.data
 
 import androidx.annotation.DrawableRes
 
-data class RecipeSearchResult(
+data class Recipe(
     val name: String,
     val rating: Double,
     val cookTime: String,
     @DrawableRes val imageID: Int, // TODO: убрать
-    val unusedIngredients: List<Ingredient>
+    val numberOfReviews: Int,
+    val ingredients: Map<String, String>,
+    val instruction: List<String>
 )

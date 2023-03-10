@@ -1,4 +1,4 @@
-package com.ruckycrewky.recepie
+package com.ruckycrewky.recepie.ui.component
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -42,9 +42,3 @@ fun BackPageButton(
         )
     }
 }
-
-//@Preview
-//@Composable
-//fun BackPageButtonPreview(){
-//    BackPageButton()
-//}
