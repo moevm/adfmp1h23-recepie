@@ -5,19 +5,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.ruckycrewky.recepie.data.Ingredient
-import com.ruckycrewky.recepie.data.IngredientCategory
-import com.ruckycrewky.recepie.data.ingredientCategoriesSamples
-import com.ruckycrewky.recepie.data.ingredientSamples
-import com.ruckycrewky.recepie.ui.state.RecipeSearchByIngredientsUIState
+import com.ruckycrewky.recepie.data.*
+import com.ruckycrewky.recepie.ui.state.SearchByIngredientsUIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.*
 
-class RecipeSearchByIngredientsViewModel: ViewModel() {
-    private val _uiState = MutableStateFlow(RecipeSearchByIngredientsUIState())
-    val uiState: StateFlow<RecipeSearchByIngredientsUIState> = _uiState.asStateFlow()
+class SearchByIngredientsViewModel(
+    // TODO: remove SamplesDrivenIngredientRepository as default value
+    private val ingredientRepository: IngredientRepository = SamplesDrivenIngredientRepository(),
+): ViewModel() {
+    private val _uiState = MutableStateFlow(SearchByIngredientsUIState())
+    val uiState: StateFlow<SearchByIngredientsUIState> = _uiState.asStateFlow()
 
     var ingredientsQuery by mutableStateOf("")
         private set
@@ -65,11 +65,10 @@ class RecipeSearchByIngredientsViewModel: ViewModel() {
     }
 
     fun getIngredientsOfChosenCategory(): List<Ingredient> {
-        // TODO: fetch data form some data source
-        val allIngredients = ingredientSamples
-        val chosenIngredientsName = _uiState.value.chosenIngredients.map { it.name }
-        return allIngredients.filter {
-            it.category == _uiState.value.chosenIngredientsCategory && !chosenIngredientsName.contains(it.name)
+        val ingredientsOfChosenCategory = ingredientRepository.getByCategory(_uiState.value.chosenIngredientsCategory)
+        val alreadyChosenIngredientsName = _uiState.value.chosenIngredients.map { it.name }
+        return ingredientsOfChosenCategory.filter {
+            !alreadyChosenIngredientsName.contains(it.name)
         }
     }
 

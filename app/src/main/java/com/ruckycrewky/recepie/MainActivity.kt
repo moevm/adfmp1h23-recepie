@@ -123,7 +123,7 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                             composable(route ="ingredient-search") {
-                                RecipeSearchByIngredients(
+                                SearchByIngredients(
                                     onClickMenu = { scope.launch { drawerState.open() }},
                                     navController = navController
                                 )
