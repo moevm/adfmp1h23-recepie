@@ -1,6 +1,6 @@
 package com.ruckycrewky.recepie.ui.page
 
-import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -28,22 +28,20 @@ import androidx.navigation.NavController
 import com.ruckycrewky.recepie.R
 import com.ruckycrewky.recepie.data.Ingredient
 import com.ruckycrewky.recepie.data.IngredientCategory
-import com.ruckycrewky.recepie.data.ingredientCategoriesSamples
-import com.ruckycrewky.recepie.data.ingredientSamples
 import com.ruckycrewky.recepie.ui.component.SearchBar
 import com.ruckycrewky.recepie.ui.component.SimpleCard
 import com.ruckycrewky.recepie.ui.theme.FindReceiptButtonColor
-import java.util.Collections
+import com.ruckycrewky.recepie.ui.viewmodel.RecipeSearchByIngredientsViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun IngredientSearch(
+fun RecipeSearchByIngredients(
     onClickMenu: () -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
-    navController: NavController
+    viewModel: RecipeSearchByIngredientsViewModel = viewModel(),
 ) {
-    var chosenCategory by remember { mutableStateOf("") }
-    var showChosenIngredients by remember { mutableStateOf(false) }
-    var chosenIngredients by remember { mutableStateOf(emptyList<Ingredient>()) }
+    val uiState by viewModel.uiState.collectAsState()
 
     val defaultButtonElevation = ButtonDefaults.buttonElevation(
         defaultElevation = 10.dp,
@@ -55,14 +53,13 @@ fun IngredientSearch(
         .padding(start = 10.dp, end = 10.dp)
         .fillMaxWidth()
 
-    val onValueChangeDoNothing = { _: String -> {} } // TODO: временная заглушка
-
+    BackHandler(onBack = { viewModel.unselectCategory() })
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SearchBar(
             placeHolder = stringResource(id = R.string.ingredient_search_placeholder),
-            onValueChange = onValueChangeDoNothing,
+            onSearchRequest = { viewModel.searchIngredients(it) },
             leadingIcon = {
                 Image(
                     painter = painterResource(R.drawable.carrot),
@@ -79,10 +76,8 @@ fun IngredientSearch(
                 .height(50.dp)
         ) {
             Button(
-                onClick = {
-                    chosenCategory = ""
-                },
-                enabled = (chosenCategory != ""),
+                onClick = { viewModel.unselectCategory() },
+                enabled = (uiState.chosenIngredientsCategory != ""),
                 elevation = defaultButtonElevation,
                 shape = CircleShape,
                 contentPadding = PaddingValues(0.dp),  // avoid the little icon
@@ -98,7 +93,7 @@ fun IngredientSearch(
             }
             Button(
                 onClick = {
-                    showChosenIngredients = !showChosenIngredients
+                    viewModel.toggleShowIngredients()
                 },
                 shape = RoundedCornerShape(22.dp),
                 elevation = defaultButtonElevation,
@@ -108,7 +103,7 @@ fun IngredientSearch(
                 ),
             ) {
                 var message = stringResource(id = R.string.ingredient_search_show_chosen_ingredients)
-                if (showChosenIngredients) {
+                if (uiState.showChosenIngredients) {
                     message = stringResource(id = R.string.ingredient_search_hide_chosen_ingredients)
                 }
                 Text(
@@ -119,47 +114,29 @@ fun IngredientSearch(
             InvisibleButton()
         }
 
-        if (showChosenIngredients) {
+        if (uiState.showChosenIngredients) {
             ChosenIngredients(
-                ingredients = chosenIngredients,
-                onDeleteIconClick = { ingredient: Ingredient ->
-                    {
-                        val mutableChosenIngredients = chosenIngredients.toMutableList()
-                        mutableChosenIngredients.remove(ingredient)
-                        chosenIngredients = Collections.unmodifiableList(mutableChosenIngredients)
-                    }
+                ingredients = uiState.chosenIngredients,
+                onDeleteIconClick = { ingredient ->
+                    viewModel.removeIngredient(ingredient.name)
                 }
             )
         }
 
-        if (chosenCategory != "") {
-            // Show ingredients
-            val chosenIngredientsName = chosenIngredients.map { it.name }
-            val availableIngredientsOfChosenCategory = ingredientSamples.filter {
-                it.category == chosenCategory && !chosenIngredientsName.contains(it.name)
-            }
+        if (uiState.chosenIngredientsCategory != "") {
             IngredientsCatalog(
-                availableIngredients = availableIngredientsOfChosenCategory,
-                onIngredientClick = { ingredient: Ingredient ->
-                    {
-                        chosenIngredients = chosenIngredients + ingredient
-                        Log.d(
-                            "IngredientSearch",
-                            "Ingredient ${ingredient.name} was chosen"
-                        )
-                    }
+                availableIngredients = viewModel.getIngredientsOfChosenCategory(),
+                onIngredientClick = { ingredient ->
+                    viewModel.addIngredient(ingredient)
                 }
             )
         }
         else {
             // Show categories of ingredients
             IngredientCategoriesCatalog(
-                categories = ingredientCategoriesSamples,
-                onCategoryClick = { category: IngredientCategory ->
-                    {
-                        chosenCategory = category.name
-                        Log.d("IngredientSearch", "Category ${category.name} was chosen")
-                    }
+                categories = viewModel.getIngredientCategories(),
+                onCategoryClick = { ingredientCategory ->
+                    viewModel.selectCategory(ingredientCategory.name)
                 }
             )
         }
@@ -167,7 +144,7 @@ fun IngredientSearch(
         Spacer(modifier = Modifier.weight(1f))
 
         Button(
-            enabled = chosenIngredients.isNotEmpty(),
+            enabled = uiState.chosenIngredients.isNotEmpty(),
             elevation = defaultButtonElevation,
             modifier = modifierWithDefaultWidth,
             colors = ButtonDefaults.buttonColors(
@@ -175,13 +152,13 @@ fun IngredientSearch(
                 contentColor = Color.White,
             ),
             onClick = {
-                val chosenIngredientName = chosenIngredients.map{it.name}
+                val chosenIngredientName = uiState.chosenIngredients.map{it.name}
                 val chosenIngredientNameString = chosenIngredientName.joinToString(",")
                 navController.navigate("recipe-search-result/${chosenIngredientNameString}")
             }
         ) {
             var message = stringResource(id = R.string.ingredient_search_find_recipes)
-            if (chosenIngredients.isEmpty())
+            if (uiState.chosenIngredients.isEmpty())
                 message = stringResource(id = R.string.ingredient_search_user_must_chose_ingredient)
             Text(message)
         }
@@ -191,7 +168,7 @@ fun IngredientSearch(
 @Composable
 fun ChosenIngredients(
     ingredients: List<Ingredient>,
-    onDeleteIconClick: (Ingredient) -> () -> Unit,
+    onDeleteIconClick: (Ingredient) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     for (ingredient in ingredients) {
@@ -219,7 +196,10 @@ fun ChosenIngredients(
             Icon(
                 imageVector = Icons.Default.Clear,
                 contentDescription = "delete",
-                modifier = Modifier.clickable(onClick = onDeleteIconClick(ingredient))
+                modifier = Modifier
+                    .clickable(
+                        onClick = { onDeleteIconClick(ingredient) }
+                    )
             )
         }
     }
@@ -228,7 +208,7 @@ fun ChosenIngredients(
 @Composable
 fun IngredientsCatalog(
     availableIngredients: List<Ingredient>,
-    onIngredientClick: (ingredient: Ingredient) -> () -> Unit,
+    onIngredientClick: (ingredient: Ingredient) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     if (availableIngredients.isEmpty()) {
@@ -254,7 +234,7 @@ fun IngredientsCatalog(
                 painterResource(id = it.imageID),
                 modifier = Modifier
                     .height(150.dp)
-                    .clickable(onClick = onIngredientClick(it))
+                    .clickable(onClick = { onIngredientClick(it) })
             )
         }
     }
@@ -263,7 +243,7 @@ fun IngredientsCatalog(
 @Composable
 fun IngredientCategoriesCatalog(
     categories: List<IngredientCategory>,
-    onCategoryClick: (IngredientCategory) -> () -> Unit,
+    onCategoryClick: (IngredientCategory) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -278,7 +258,7 @@ fun IngredientCategoriesCatalog(
                 painterResource(id = it.imageID),
                 modifier = Modifier
                     .height(150.dp)
-                    .clickable(onClick = onCategoryClick(it))
+                    .clickable(onClick = { onCategoryClick(it) })
             )
         }
     }
