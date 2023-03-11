@@ -117,7 +117,6 @@ class MainActivity : ComponentActivity() {
                         NavHost(navController = navController, startDestination = "recipe-catalog") {
                             composable("recipe-catalog") {
                                 RecipeCatalog(
-                                    recipes = recipeSamples,
                                     onClickMenu = { scope.launch { drawerState.open() }},
                                     navController = navController
                                 )
