@@ -31,15 +31,15 @@ import com.ruckycrewky.recepie.data.IngredientCategory
 import com.ruckycrewky.recepie.ui.component.SearchBar
 import com.ruckycrewky.recepie.ui.component.SimpleCard
 import com.ruckycrewky.recepie.ui.theme.FindReceiptButtonColor
-import com.ruckycrewky.recepie.ui.viewmodel.SearchByIngredientsViewModel
+import com.ruckycrewky.recepie.ui.viewmodel.RecipeSearchByIngredientsViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun RecipeSearchByIngredients(
     onClickMenu: () -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: SearchByIngredientsViewModel = viewModel(),
-    navController: NavController
+    viewModel: RecipeSearchByIngredientsViewModel = viewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -53,15 +53,13 @@ fun RecipeSearchByIngredients(
         .padding(start = 10.dp, end = 10.dp)
         .fillMaxWidth()
 
-    val onValueChangeDoNothing = { _: String -> {} } // TODO: временная заглушка
-
     BackHandler(onBack = { viewModel.unselectCategory() })
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SearchBar(
             placeHolder = stringResource(id = R.string.ingredient_search_placeholder),
-            onValueChange = onValueChangeDoNothing,
+            onSearchRequest = { viewModel.searchIngredients(it) },
             leadingIcon = {
                 Image(
                     painter = painterResource(R.drawable.carrot),

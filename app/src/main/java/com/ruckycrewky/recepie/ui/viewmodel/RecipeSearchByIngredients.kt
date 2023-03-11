@@ -1,20 +1,26 @@
 package com.ruckycrewky.recepie.ui.viewmodel
 
+import kotlinx.coroutines.flow.MutableStateFlow
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.ruckycrewky.recepie.data.Ingredient
 import com.ruckycrewky.recepie.data.IngredientCategory
 import com.ruckycrewky.recepie.data.ingredientCategoriesSamples
 import com.ruckycrewky.recepie.data.ingredientSamples
-import com.ruckycrewky.recepie.ui.state.SearchByIngredientsUIState
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.ruckycrewky.recepie.ui.state.RecipeSearchByIngredientsUIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.*
 
-class SearchByIngredientsViewModel: ViewModel() {
-    private val _uiState = MutableStateFlow(SearchByIngredientsUIState())
-    val uiState: StateFlow<SearchByIngredientsUIState> = _uiState.asStateFlow()
+class RecipeSearchByIngredientsViewModel: ViewModel() {
+    private val _uiState = MutableStateFlow(RecipeSearchByIngredientsUIState())
+    val uiState: StateFlow<RecipeSearchByIngredientsUIState> = _uiState.asStateFlow()
+
+    var ingredientsQuery by mutableStateOf("")
+        private set
 
     fun unselectCategory() {
         _uiState.update { currentState ->
@@ -69,5 +75,10 @@ class SearchByIngredientsViewModel: ViewModel() {
 
     fun getIngredientCategories(): List<IngredientCategory> {
         return ingredientCategoriesSamples
+    }
+
+    fun searchIngredients(query: String) {
+        // TODO: implement
+        ingredientsQuery = query
     }
 }

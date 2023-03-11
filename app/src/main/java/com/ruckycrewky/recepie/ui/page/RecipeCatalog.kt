@@ -24,10 +24,9 @@ fun RecipeCatalog(
     navController: NavController
 ) {
     Column {
-        val onValueChangeDoNothing = { _: String -> {} }
         SearchBar(
             placeHolder = stringResource(id = R.string.recipe_search_placeholder),
-            onValueChange = onValueChangeDoNothing, // TODO: временная заглушка
+            onSearchRequest = {  }, // TODO: временная заглушка
             leadingIcon = {
             Image(
                 painter = painterResource(R.drawable.recipe),

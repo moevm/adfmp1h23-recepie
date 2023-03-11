@@ -1,6 +1,7 @@
 package com.ruckycrewky.recepie.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,7 +20,7 @@ import com.ruckycrewky.recepie.R
 @Composable
 fun SearchBar(
     placeHolder: String,
-    onValueChange: (String) -> () -> Unit,
+    onSearchRequest: (String) -> Unit,
     leadingIcon: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -36,14 +37,17 @@ fun SearchBar(
             value = searchQuery,
             onValueChange = {
                 searchQuery = it
-                onValueChange(it)
             },
             modifier = modifier,
             leadingIcon = leadingIcon,
             trailingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search"
+                    contentDescription = "Search",
+                    modifier = Modifier
+                        .clickable(onClick = {
+                            onSearchRequest(searchQuery)
+                        })
                 )
             },
             placeholder = {
@@ -70,9 +74,9 @@ fun SearchBarPreview() {
             contentDescription = "Search",
         )
     }
-    val onValueChangeDoNothing = { _: String -> {} }
+    val onSearchRequestDoNothing = { _: String -> }
     SearchBar(
         "Искать",
-        onValueChangeDoNothing,
+        onSearchRequestDoNothing,
         leadingIcon)
 }
