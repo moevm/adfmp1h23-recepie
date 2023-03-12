@@ -31,15 +31,15 @@ import com.ruckycrewky.recepie.data.IngredientCategory
 import com.ruckycrewky.recepie.ui.component.SearchBar
 import com.ruckycrewky.recepie.ui.component.SimpleCard
 import com.ruckycrewky.recepie.ui.theme.FindReceiptButtonColor
-import com.ruckycrewky.recepie.ui.viewmodel.RecipeSearchByIngredientsViewModel
+import com.ruckycrewky.recepie.ui.viewmodel.SearchByIngredientsViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun RecipeSearchByIngredients(
+fun SearchByIngredients(
     onClickMenu: () -> Unit,
     navController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: RecipeSearchByIngredientsViewModel = viewModel(),
+    viewModel: SearchByIngredientsViewModel = viewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
