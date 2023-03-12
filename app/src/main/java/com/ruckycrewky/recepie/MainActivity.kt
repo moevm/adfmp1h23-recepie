@@ -27,6 +27,7 @@ import com.ruckycrewky.recepie.data.recipeSamples
 import com.ruckycrewky.recepie.data.recipeSearchResultSamples
 import com.ruckycrewky.recepie.ui.page.*
 import com.ruckycrewky.recepie.ui.theme.RecepieTheme
+import com.ruckycrewky.recepie.ui.viewmodel.RecipeViewModel
 import kotlinx.coroutines.launch
 
 
@@ -136,8 +137,9 @@ class MainActivity : ComponentActivity() {
                                     val recipeObject: Recipe? =
                                         findRecipe(recipes = recipeSamples, recipeName)
                                     if(recipeObject != null){
+                                        val viewModel = RecipeViewModel(recipeObject)
                                         RecipePage(
-                                            recipeData = recipeObject,
+                                            viewModel = viewModel,
                                             navController = navController
                                         )
                                     }

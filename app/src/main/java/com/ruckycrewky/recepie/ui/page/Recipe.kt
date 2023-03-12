@@ -18,16 +18,18 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ruckycrewky.recepie.R
-import com.ruckycrewky.recepie.data.Recipe
 import com.ruckycrewky.recepie.ui.component.BackPageButton
 import com.ruckycrewky.recepie.ui.component.StepByStepInstruction
 import com.ruckycrewky.recepie.ui.theme.*
+import com.ruckycrewky.recepie.ui.viewmodel.RecipeViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun RecipePage(
-    recipeData: Recipe,
+    viewModel: RecipeViewModel = viewModel(),
     navController: NavController
 ){
+    val uiState by viewModel.uiState.collectAsState()
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -41,7 +43,7 @@ fun RecipePage(
                     .height(180.dp)
             ) {
                 Image(
-                    painter = painterResource(recipeData.imageID),
+                    painter = painterResource(uiState.recipe.imageID),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -54,7 +56,7 @@ fun RecipePage(
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = recipeData.name,
+                text = uiState.recipe.name,
                 style = Typography.titleLarge,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -75,7 +77,7 @@ fun RecipePage(
                                 color = ClickAnimationColor
                             )
                         ) {
-                            navController.navigate("feedback/${recipeData.name}")
+                            navController.navigate("feedback/${uiState.recipe.name}")
                         },
                     shape = MaterialTheme.shapes.medium,
                     shadowElevation = 1.dp,
@@ -86,7 +88,7 @@ fun RecipePage(
                         Row() {
                             for (i in 1..5) {
                                 var star = R.drawable.empty_star_rate_24
-                                if (i <= recipeData.rating) {
+                                if (i <= uiState.recipe.rating) {
                                     star = R.drawable.full_star_rate_24
                                 }
                                 Image(
@@ -97,7 +99,7 @@ fun RecipePage(
                                 )
                             }
                             Text(
-                                text = "${recipeData.rating}",
+                                text = "${uiState.recipe.rating}",
                                 color = HighRating,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Right,
@@ -107,7 +109,7 @@ fun RecipePage(
                             )
                         }
                         Text(
-                            text = "${recipeData.numberOfReviews} отзывов",
+                            text = "${uiState.recipe.numberOfReviews} отзывов",
                             textAlign = TextAlign.Center,
                             textDecoration = TextDecoration.Underline,
                             color = GrayCookTime,
@@ -122,7 +124,7 @@ fun RecipePage(
                     modifier = Modifier.padding(vertical = 15.dp)
                 ) {
                     Text(
-                        text = recipeData.cookTime,
+                        text = uiState.recipe.cookTime,
                         color = GrayCookTime
                     )
                     Image(
@@ -134,8 +136,13 @@ fun RecipePage(
             }
             Spacer(modifier = Modifier.height(20.dp))
             StepByStepInstruction(
-                ingredients = recipeData.ingredients,
-                instructions = recipeData.instruction
+                ingredients = uiState.recipe.ingredients,
+                stepNumber = uiState.stepNumber,
+                step = uiState.step,
+                onClickBackButton = { viewModel.prevStep() },
+                onClickNextButton = { viewModel.nextStep() },
+                backButtonIsEnabled = uiState.backButtonIsEnabled,
+                nextButtonIsEnabled = uiState.nextButtonIsEnabled
             )
         }
     }
