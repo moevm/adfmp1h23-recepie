@@ -29,7 +29,7 @@ class RecipeViewModel(
         _uiState.update{currentState ->
             currentState.copy(
                 stepNumber = currentState.stepNumber - 1,
-                step = recipe.instruction[currentState.stepNumber - 1],
+                step = recipe.instruction[currentState.stepNumber - 2],
                 nextButtonIsEnabled = isNextButtonEnabled(currentState.stepNumber - 1),
                 backButtonIsEnabled = isBackButtonEnabled(currentState.stepNumber - 1)
             )
