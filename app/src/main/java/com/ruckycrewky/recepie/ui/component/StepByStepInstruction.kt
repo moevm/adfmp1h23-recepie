@@ -23,13 +23,14 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun StepByStepInstruction(
-    ingredients: Map<String, String>,
-    instructions: List<String>
+    onClickNextButton: () -> Unit,
+    onClickBackButton: () -> Unit,
+    nextButtonIsEnabled: Boolean,
+    backButtonIsEnabled: Boolean,
+    step: String,
+    stepNumber: Int,
+    ingredients: Map<String, String>
 ) {
-    var currentPage by remember { mutableStateOf(0) }
-    var currentText by remember { mutableStateOf("") }
-    if(currentPage != 0)
-        currentText = instructions[currentPage - 1]
     Box(
         modifier = Modifier
             .height(400.dp)
@@ -48,7 +49,7 @@ fun StepByStepInstruction(
             shadowElevation = 1.dp
         ) {
             AnimatedContent(
-                targetState = currentPage,
+                targetState = stepNumber,
                 transitionSpec = {
                     fadeIn(
                         animationSpec = tween(
@@ -101,9 +102,8 @@ fun StepByStepInstruction(
                             modifier = Modifier
                                 .padding(top = 3.dp, start = 12.dp, end = 0.dp, bottom = 0.dp)
                         )
-                        currentText = instructions[targetPage - 1]
                         Text(
-                            text = currentText,
+                            text = step,
                             modifier = Modifier
                                 .padding(top = 0.dp, start = 3.dp, end = 0.dp, bottom = 20.dp)
                         )
@@ -113,12 +113,10 @@ fun StepByStepInstruction(
         }
     }
     Spacer(modifier = Modifier.height(10.dp))
-    val backEnabled = (currentPage != 0)
-    val nextEnabled = (currentPage != instructions.size)
     Row(){
         Spacer(modifier = Modifier.width(65.dp))
-        BackButton(onClick = { currentPage -= 1 }, isEnabled = backEnabled)
+        BackButton(onClick = { onClickBackButton() }, isEnabled = backButtonIsEnabled)
         Spacer(modifier = Modifier.width(40.dp))
-        NextButton(onClick = { currentPage += 1 }, isEnabled = nextEnabled)
+        NextButton(onClick = { onClickNextButton() }, isEnabled = nextButtonIsEnabled)
     }
 }
