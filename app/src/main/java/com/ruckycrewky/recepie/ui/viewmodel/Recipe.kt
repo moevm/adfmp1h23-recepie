@@ -19,8 +19,8 @@ class RecipeViewModel(
             currentState.copy(
                 stepNumber = currentState.stepNumber + 1,
                 step = recipe.instruction[currentState.stepNumber],
-                nextButtonIsEnabled = getNextButtonIsEnabled(currentState.stepNumber + 1),
-                backButtonIsEnabled = getBackButtonIsEnabled(currentState.stepNumber + 1)
+                nextButtonIsEnabled = isNextButtonEnabled(currentState.stepNumber + 1),
+                backButtonIsEnabled = isBackButtonEnabled(currentState.stepNumber + 1)
             )
         }
     }
@@ -30,17 +30,17 @@ class RecipeViewModel(
             currentState.copy(
                 stepNumber = currentState.stepNumber - 1,
                 step = recipe.instruction[currentState.stepNumber - 1],
-                nextButtonIsEnabled = getNextButtonIsEnabled(currentState.stepNumber - 1),
-                backButtonIsEnabled = getBackButtonIsEnabled(currentState.stepNumber - 1)
+                nextButtonIsEnabled = isNextButtonEnabled(currentState.stepNumber - 1),
+                backButtonIsEnabled = isBackButtonEnabled(currentState.stepNumber - 1)
             )
         }
     }
 
-    private fun getNextButtonIsEnabled(currentStepNumber: Int): Boolean{
+    private fun isNextButtonEnabled(currentStepNumber: Int): Boolean{
         return currentStepNumber != uiState.value.recipe.instruction.size
     }
 
-    private fun getBackButtonIsEnabled(currentStepNumber: Int): Boolean{
+    private fun isBackButtonEnabled(currentStepNumber: Int): Boolean{
         return currentStepNumber != 0
     }
 }
